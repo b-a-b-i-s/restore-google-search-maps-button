@@ -1,5 +1,21 @@
 {
-  "host_permissions": ["https://www.google.com/search*"],
+  "name": "Restore Google Search Maps Button",
+  "description": "Adds back the Maps button to Google search pages and makes the search result map images clickable again for seamless navigation.",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "icons": {
+    "128": "images/icon128.png",
+    "16": "images/icon16.png",
+    "48": "images/icon48.png"
+  },
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "options_ui": {
+    "page": "src/popup.html",
+    "open_in_tab": false
+  },
   "content_scripts": [
     {
       "js": ["src/addMapsBtn.js"],
@@ -51,22 +67,5 @@
         "https://www.google.mc/search*"
       ]
     }
-  ],
-  "description": "Adds back the Maps button to Google search pages and makes the search result map images clickable again for seamless navigation.",
-  "action": {
-    "default_popup": "src/options.html"
-  },
-  "icons": {
-    "128": "images/icon128.png",
-    "16": "images/icon16.png",
-    "48": "images/icon48.png"
-  },
-  "manifest_version": 3,
-  "options_ui": {
-    "page": "src/options.html",
-    "open_in_tab": false
-  },
-  "name": "Restore Google Search Maps Button",
-  "permissions": ["activeTab", "storage"],
-  "version": "0.0.1"
+  ]
 }
