@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html {
+        width: 200px;
+        height: 150px;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extension Popup</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container" style="display: grid; margin-top: 5px">
+      <div class="input-field">
+        <input id="mapsPosition" type="number" min="1" max="10" class="validate" />
+        <label for="mapsPosition">Position of Maps Link</label>
+      </div>
+
+      <button id="save" class="btn waves-effect waves-light" type="button">Save</button>
+
+      <div><span id="status" class="badge"></span></div>
+    </div>
+
+    <!-- Materialize JavaScript -->
+    <script src="materialize.min.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
