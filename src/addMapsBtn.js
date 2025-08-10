@@ -22,18 +22,36 @@ function insertMapsButton() {
   }
 
   let referenceAnchor;
-  const matchingDivs = Array.from(document.querySelectorAll('div[jsname="bVqjv"]')).filter((div) => div.closest("a"));
+
   chrome.storage.sync.get({ mapsPosition: 2 }, (items) => {
     let mapsPosition = items.mapsPosition - 1;
     if (mapsPosition == null) {
       mapsPosition = 1;
     }
 
-    const jsnameBvqjv = matchingDivs[mapsPosition];
+    // Try new Google HTML structure first - look for the Images button
+    const newStructureContainer = document.querySelector("div.rQTE8b div.beZ0tf.O1uzAe");
+    if (newStructureContainer) {
+      const listItems = newStructureContainer.querySelectorAll('div[role="listitem"]');
+      const r1qwufElements = newStructureContainer.querySelectorAll(".R1QWuf");
+      if (r1qwufElements.length >= 2) {
+        const imagesSpan = r1qwufElements[mapsPosition];
+        const imagesListItem = imagesSpan.closest('div[role="listitem"]');
+        if (imagesListItem) {
+          referenceAnchor = imagesListItem;
+        }
+      }
+    }
 
-    if (jsnameBvqjv) {
-      const closestDiv = jsnameBvqjv.closest("a").closest("div");
-      referenceAnchor = closestDiv.querySelector("h1") ? jsnameBvqjv.closest("a") : closestDiv;
+    // Fallback to old structure if new structure not found
+    if (!referenceAnchor) {
+      const matchingDivs = Array.from(document.querySelectorAll('div[jsname="bVqjv"]')).filter((div) => div.closest("a"));
+      const jsnameBvqjv = matchingDivs[mapsPosition];
+
+      if (jsnameBvqjv) {
+        const closestDiv = jsnameBvqjv.closest("a").closest("div");
+        referenceAnchor = closestDiv.querySelector("h1") ? jsnameBvqjv.closest("a") : closestDiv;
+      }
     }
 
     if (!referenceAnchor) {
@@ -55,6 +73,7 @@ function insertMapsButton() {
     if (mapsAnchor) mapsAnchor.href = mapsUrl;
 
     mapsAnchorWrapper.querySelector("div.YmvwI[selected]")?.removeAttribute("selected");
+    mapsAnchorWrapper.querySelector("div[selected]")?.removeAttribute("selected");
 
     const spanOrDiv = mapsAnchorWrapper.querySelector("span") || mapsAnchorWrapper.querySelector("div");
     if (spanOrDiv) {
