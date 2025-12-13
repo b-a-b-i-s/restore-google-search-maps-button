@@ -121,11 +121,11 @@ function addMapsShortcut() {
   if (sodP3bElement) {
     let anchor = document.createElement("a");
     anchor.style.position = "absolute";
-    anchor.style.top = "5px";
-    anchor.style.left = "5px";
-    anchor.style.color = "#333";
-    anchor.style.background = "#d5d5d5";
-    anchor.style.padding = "10px";
+    anchor.style.top = "12px";
+    anchor.style.left = "12px";
+    anchor.style.color = "white";
+    anchor.style.backgroundColor = "rgba(0,0,0,0.6)";
+    anchor.style.padding = "9px 12px";
     anchor.style.zIndex = "10";
     anchor.style.borderRadius = "20px";
     anchor.textContent = "Open in Maps";
