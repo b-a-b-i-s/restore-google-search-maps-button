@@ -130,6 +130,12 @@ function addMapsShortcut() {
     anchor.style.borderRadius = "20px";
     anchor.textContent = "Open in Maps";
     anchor.href = mapsUrl;
+    anchor.addEventListener("mouseenter", () => {
+      anchor.style.textDecoration = "underline";
+    });
+    anchor.addEventListener("mouseleave", () => {
+      anchor.style.textDecoration = "none";
+    });
     sodP3bElement.append(anchor);
   }
 }
