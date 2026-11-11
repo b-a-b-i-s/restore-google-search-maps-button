@@ -16,10 +16,11 @@ jobs:
         run: git archive --format=zip --output=extension.zip HEAD
 
       - name: Upload & release
-        uses: mnao305/chrome-extension-upload@v5.0.0
+        uses: mnao305/chrome-extension-upload@v7.0.0
         with:
           file-path: extension.zip
           extension-id: iglddmpkpmdmhbafkkpcpcddkplfongi
+          publisher-id: ${{ secrets.PUBLISHER_ID }}
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           refresh-token: ${{ secrets.REFRESH_TOKEN }}
