@@ -13,7 +13,7 @@ A Chrome extension that brings back the **Maps** tab on Google Search and adds a
 - **Open in Maps button**: adds a button to the top-left corner of:
   - the map in the info panel for a place (for example, searching `eiffel tower`). The button works both before and after the map becomes draggable.
   - the `Places` map in local searches (for example, `pizza near syntagma athens`).
-- **Clickable map image**: on older layouts where the map is a still image, the image itself links to Google Maps.
+- Clicking the map itself does not leave the search page: Google's own map behaviour (expanding, dragging) stays as it is. Only the **Open in Maps** button opens Google Maps.
 - **Configurable position**: click the extension icon to choose where the Maps tab goes. The value `N` puts it after the Nth regular tab. The default of `2` gives `All, Images, Maps, …`.
 - The extension keeps watching the page while it loads, so it catches parts that Google draws late or redraws. Each element is added only once.
 
@@ -51,7 +51,7 @@ CHANGELOG.md           Release notes
 ### Debugging
 
 - Content-script errors appear in the Google tab's DevTools console and on the extension's card (**Errors**).
-- Everything the extension adds has a `data-restore-maps` attribute (`tab`, `shortcut` or `image`). In the DevTools console, `document.querySelectorAll('[data-restore-maps]')` shows what was added.
+- Everything the extension adds has a `data-restore-maps` attribute (`tab` or `shortcut`). In the DevTools console, `document.querySelectorAll('[data-restore-maps]')` shows what was added.
 - Google changes its markup often. When something breaks, compare the live DOM against the selectors in `src/addMapsBtn.js`:
   - `[role="list"]` and `[aria-current="page"]`: the tab bar
   - `div.V1GY4c` and `.ZqGZZ`: the info-panel map

@@ -147,34 +147,6 @@ function addMapsShortcut() {
   });
 }
 
-/* ---------- Legacy static map image ---------- */
-
-function wrapInMapsLink(element) {
-  const anchor = document.createElement("a");
-  anchor.setAttribute(MARKER_ATTR, "image");
-  anchor.href = mapsUrl;
-  element.parentNode.insertBefore(anchor, element);
-  anchor.appendChild(element);
-}
-
-function setMapImageLink() {
-  const luMapElement = document.querySelector("#lu_map");
-  if (luMapElement) {
-    const parentAnchor = luMapElement.closest("a");
-    if (!parentAnchor) {
-      wrapInMapsLink(luMapElement);
-    } else if (!parentAnchor.getAttribute("href")?.trim()) {
-      parentAnchor.href = mapsUrl;
-    }
-    return;
-  }
-
-  const imgElement = document.querySelector("div.V1GY4c img");
-  if (imgElement && !imgElement.closest('a[href]:not([href=""]):not([href=" "])')) {
-    wrapInMapsLink(imgElement);
-  }
-}
-
 /* ---------- Wiring ---------- */
 
 function setupMapsButton() {
@@ -182,7 +154,6 @@ function setupMapsButton() {
   if (!mapsUrl) return;
   refreshOwnLinks();
   insertMapsButton();
-  setMapImageLink();
   addMapsShortcut();
 }
 
