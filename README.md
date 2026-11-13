@@ -10,6 +10,7 @@ A Chrome extension that brings back the **Maps** tab on Google Search and adds a
   - The tab finds its place from the selected tab rather than from the tab names, so it works whatever language Google is shown in.
   - It skips the `AI Mode` and `More` entries.
   - If Google already shows its own Maps tab, the extension leaves it alone.
+- **Follows Google's spelling correction**: when Google shows "These are results for *X*" / "Search instead for *Y*", both the Maps tab and **Open in Maps** open *X*, the place the results are about, not the text you typed. If you click "Search instead for…", they use your original text.
 - **Open in Maps button**: adds a button to the top-left corner of:
   - the map in the info panel for a place (for example, searching `eiffel tower`). The button works both before and after the map becomes draggable.
   - the `Places` map in local searches (for example, `pizza near syntagma athens`).

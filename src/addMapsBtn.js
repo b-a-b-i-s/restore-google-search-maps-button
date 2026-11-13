@@ -4,8 +4,22 @@ const MARKER_ATTR = "data-restore-maps";
 let mapsUrl = "";
 let mapsPosition = DEFAULT_MAPS_POSITION;
 
+// When Google auto-corrects a query ("These are results for X / Search instead for Y"),
+// the results - and the map - are for X, so Maps should open X, not the typed text.
+function getCorrectedQuery() {
+  const correctedLink = document.querySelector("a#fprsl");
+  if (!correctedLink) return null;
+  try {
+    const query = new URL(correctedLink.href, window.location.href).searchParams.get("q");
+    if (query) return query;
+  } catch {
+    // fall through to the link text
+  }
+  return correctedLink.textContent.trim() || null;
+}
+
 function getSearchQuery() {
-  return new URLSearchParams(window.location.search).get("q");
+  return getCorrectedQuery() || new URLSearchParams(window.location.search).get("q");
 }
 
 function updateMapsUrl() {
